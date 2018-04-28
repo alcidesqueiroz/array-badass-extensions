@@ -1,0 +1,32 @@
+{
+  "name": "array-badass-extensions",
+  "version": "1.0.0",
+  "description": "🥊  Badass extension methods for JavaScript arrays.",
+  "license": "MIT",
+  "repository": "alcidesqueiroz/array-badass-extensions",
+  "author": {
+    "name": "Alcides Queiroz",
+    "email": "alcidesqueiroz <at> gmail",
+    "url": "medium.com/@alcidesqueiroz"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "scripts": {
+    "test": "eslint index.js && tap test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "array",
+    "extensions",
+    "methods"
+  ],
+  "devDependencies": {
+    "eslint": "^4.18.2",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "tap": "^11.1.1"
+  }
+}
