@@ -88,6 +88,53 @@ ex.$compact = (arr) => {
   return arr;
 };
 
+ex.uniq = arr => [...new Set(arr)];
+
+ex.$uniq = (arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    const item = arr[i];
+    if (arr.indexOf(item) > -1) {
+      arr.splice(i, 1);
+      i--;
+    }
+  }
+  return arr;
+};
+
+ex.minus = (arr, arr2) => arr.filter(item => arr2.indexOf(item) === -1);
+
+ex.$minus = (arr, arr2) => {
+  for (let i = 0; i < arr.length; i++) {
+    const item = arr[i];
+    if (arr2.indexOf(item) > -1) {
+      arr.splice(i, 1);
+      i--;
+    }
+  }
+  return arr;
+};
+
+ex.assoc = (arr, val) => arr.filter(item => item && item[0] === val)[0];
+
+ex.at = (arr, pos) => arr.slice(pos, pos !== -1 ? (pos + 1) : undefined)[0];
+
+ex.$clear = (arr) => {
+  arr.length = 0;
+  return arr;
+};
+
+ex.count = (arr, ...args) => arr.filter(item => args.length === 0 || item === args[0]).length;
+
+ex.countIf = (arr, fn) => arr.filter(item => fn(item)).length;
+
+ex.cycle = (arr, n = 1, fn) => {
+  for (let i = 0; i < n; i++) {
+    arr.forEach(item => fn(item));
+  }
+};
+
+
+
 
 
 const exSymbol = Symbol('ex');

@@ -11,6 +11,7 @@
     "no-mixed-operators": "off",
     "no-multiple-empty-lines": "off",
     "no-plusplus": "off",
-    "prefer-destructuring": "off"
+    "prefer-destructuring": "off",
+    "no-param-reassign": "off"
   }
 }

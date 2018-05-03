@@ -81,7 +81,7 @@ test('dropWhile', (t) => {
 });
 
 test('insert', (t) => {
-  let a = [11, 22, 33, 44, 55, 66];
+  const a = [11, 22, 33, 44, 55, 66];
   t.notEqual(a.ex.insert(0, 77), a);
   t.same([11, 22, 33, 44, 55, 66].ex.insert(0, 77), [77, 11, 22, 33, 44, 55, 66]);
   t.same([11, 22, 33, 44, 55, 66].ex.insert(3, 77), [11, 22, 33, 77, 44, 55, 66]);
@@ -93,7 +93,7 @@ test('insert', (t) => {
 });
 
 test('$insert', (t) => {
-  let a = [11, 22, 33, 44, 55, 66];
+  const a = [11, 22, 33, 44, 55, 66];
   t.equal(a.ex.$insert(0, 77), a);
   t.same([11, 22, 33, 44, 55, 66].ex.$insert(0, 77), [77, 11, 22, 33, 44, 55, 66]);
   t.same([11, 22, 33, 44, 55, 66].ex.$insert(3, 77), [11, 22, 33, 77, 44, 55, 66]);
@@ -105,11 +105,11 @@ test('$insert', (t) => {
 });
 
 test('delete', (t) => {
-  let a = [11, 22, 33, 44, 55, 66];
+  const a = [11, 22, 33, 44, 55, 66];
   t.notEqual(a.ex.delete(0, 66), a);
   t.same([11, 22, 33, 44, 55, 66].ex.delete(11), [22, 33, 44, 55, 66]);
   t.same([11, 22, 33, 44, 55, 66, 44, 77, 44].ex.delete(44), [11, 22, 33, 55, 66, 77]);
-  let b = {};
+  const b = {};
   t.same([11, 22, 33, 44, b, 55, 66].ex.delete(b), [11, 22, 33, 44, 55, 66]);
   t.same([11, 22, 33, 44, 55, 66].ex.delete(123), [11, 22, 33, 44, 55, 66]);
   t.same([11, 22, 33, 44, 55, 66].ex.delete({}), [11, 22, 33, 44, 55, 66]);
@@ -118,11 +118,11 @@ test('delete', (t) => {
 });
 
 test('$delete', (t) => {
-  let a = [11, 22, 33, 44, 55, 66];
+  const a = [11, 22, 33, 44, 55, 66];
   t.equal(a.ex.$delete(0, 66), a);
   t.same([11, 22, 33, 44, 55, 66].ex.$delete(11), [22, 33, 44, 55, 66]);
   t.same([11, 22, 33, 44, 55, 66, 44, 77, 44].ex.$delete(44), [11, 22, 33, 55, 66, 77]);
-  let b = {};
+  const b = {};
   t.same([11, 22, 33, 44, b, 55, 66].ex.$delete(b), [11, 22, 33, 44, 55, 66]);
   t.same([11, 22, 33, 44, 55, 66].ex.$delete(123), [11, 22, 33, 44, 55, 66]);
   t.same([11, 22, 33, 44, 55, 66].ex.$delete({}), [11, 22, 33, 44, 55, 66]);
@@ -131,7 +131,7 @@ test('$delete', (t) => {
 });
 
 test('deleteAt', (t) => {
-  let a = [11, 22, 33, 44, 55, 66];
+  const a = [11, 22, 33, 44, 55, 66];
   t.notEqual(a.ex.deleteAt(0, 66), a);
   t.same([11, 22, 33, 44, 55, 66].ex.deleteAt(0), [22, 33, 44, 55, 66]);
   t.same([11, 22, 33, 44, 55, 66].ex.deleteAt(3), [11, 22, 33, 55, 66]);
@@ -141,7 +141,7 @@ test('deleteAt', (t) => {
 });
 
 test('$deleteAt', (t) => {
-  let a = [11, 22, 33, 44, 55, 66];
+  const a = [11, 22, 33, 44, 55, 66];
   t.equal(a.ex.$deleteAt(0, 66), a);
   t.same([11, 22, 33, 44, 55, 66].ex.$deleteAt(0), [22, 33, 44, 55, 66]);
   t.same([11, 22, 33, 44, 55, 66].ex.$deleteAt(3), [11, 22, 33, 55, 66]);
@@ -151,7 +151,7 @@ test('$deleteAt', (t) => {
 });
 
 test('$deleteIf', (t) => {
-  let a = [11, 22, 33, 44, 55, 66];
+  const a = [11, 22, 33, 44, 55, 66];
   t.equal(a.ex.$deleteIf(item => item === 33), a);
   t.same([11, 22, 33, 44, 55, 12, 66, 13].ex.$deleteIf(item => item > 40), [11, 22, 33, 12, 13]);
   t.same([11, 22, 33, 44, 55, 66].ex.$deleteIf(item => item === 44), [11, 22, 33, 55, 66]);
@@ -160,10 +160,8 @@ test('$deleteIf', (t) => {
   t.end();
 });
 
-
-
 test('compact', (t) => {
-  let a = [11, 22, 33, null, 44, 55, 66];
+  const a = [11, 22, 33, null, 44, 55, 66];
   t.notEqual(a.ex.compact(), a);
   t.same([null, null, 11, undefined, 22, 33, undefined, null, 44, null].ex.compact(), [11, 22, 33, 44]);
   t.same([].ex.compact(), []);
@@ -172,10 +170,112 @@ test('compact', (t) => {
 });
 
 test('$compact', (t) => {
-  let a = [11, 22, 33, null, 44, 55, 66];
+  const a = [11, 22, 33, null, 44, 55, 66];
   t.equal(a.ex.$compact(), a);
   t.same([null, null, 11, undefined, 22, 33, undefined, null, 44, null].ex.$compact(), [11, 22, 33, 44]);
   t.same([].ex.$compact(), []);
   t.same([null, null, undefined, null, undefined].ex.$compact(), []);
+  t.end();
+});
+
+test('uniq', (t) => {
+  const a = [11, 22, 33, 44, 55, 66];
+  t.notEqual(a.ex.uniq(), a);
+  t.same([11, 22, 11, 22, 33, 44, 33, 44, 22].ex.uniq(), [11, 22, 33, 44]);
+  const b = {}, c = [];
+  t.same([11, 22, b, 11, 22, 33, b, 44, 33, c, 44, 22, c].ex.uniq(), [11, 22, b, 33, 44, c]);
+  t.same([].ex.uniq(), []);
+  t.same([null, undefined, null, undefined].ex.uniq(), [null, undefined]);
+  t.end();
+});
+
+test('$uniq', (t) => {
+  const a = [11, 22, 33, null, 44, 55, 66];
+  t.equal(a.ex.$uniq(), a);
+  t.same([11, 22, 11, 22, 33, 44, 33, 44, 22].ex.uniq(), [11, 22, 33, 44]);
+  const b = {}, c = [];
+  t.same([11, 22, b, 11, 22, 33, b, 44, 33, c, 44, 22, c].ex.uniq(), [11, 22, b, 33, 44, c]);
+  t.same([].ex.uniq(), []);
+  t.same([null, undefined, null, undefined].ex.uniq(), [null, undefined]);
+  t.end();
+});
+
+test('minus', (t) => {
+  const a = [11, 22, 33, 44, 55, 66];
+  t.notEqual(a.ex.minus([11]), a);
+  t.same([11, 22, 11, 22, 33, 44, 33, 44, 22].ex.minus([11, 22]), [33, 44, 33, 44]);
+  const b = {}, c = [];
+  t.same([11, 22, b, 11, 22, 33, b, 44, 33, c, 44, 22, c].ex.minus([b, 44]), [11, 22, 11, 22, 33, 33, c, 22, c]);
+  t.same([].ex.minus([11, 22]), []);
+  t.same([11, 22].ex.minus([]), [11, 22]);
+  t.same([null, undefined, null, undefined].ex.minus([null]), [undefined, undefined]);
+  t.end();
+});
+
+test('$minus', (t) => {
+  const a = [11, 22, 33, null, 44, 55, 66];
+  t.equal(a.ex.$minus([11]), a);
+  t.same([11, 22, 11, 22, 33, 44, 33, 44, 22].ex.minus([11, 22]), [33, 44, 33, 44]);
+  const b = {}, c = [];
+  t.same([11, 22, b, 11, 22, 33, b, 44, 33, c, 44, 22, c].ex.minus([b, 44]), [11, 22, 11, 22, 33, 33, c, 22, c]);
+  t.same([].ex.minus([11, 22]), []);
+  t.same([11, 22].ex.minus([]), [11, 22]);
+  t.same([null, undefined, null, undefined].ex.minus([null]), [undefined, undefined]);
+  t.end();
+});
+
+test('assoc', (t) => {
+  const a = {};
+  const b = [77, 88, 99];
+  t.equal([[11, 22, 33], [44, 55, 66], b].ex.assoc(77), b);
+  t.same([[11, 22, 33], [a, 55, 66], [77, 88, 99]].ex.assoc(a), [a, 55, 66]);
+  t.same([[11, 22, 33], [44, 55, 66], [77, 88, 99]].ex.assoc(44), [44, 55, 66]);
+  t.same([[11, 22, 33], [44, 55, 66], [77, 88, 99]].ex.assoc(445), undefined);
+  t.same([].ex.assoc(44), undefined);
+  t.end();
+});
+
+test('at', (t) => {
+  t.same([11, 22, 33, 44, 55, 66, 77, 88, 99].ex.at(0), 11);
+  t.same([11, 22, 33, 44, 55, 66, 77, 88, 99].ex.at(2), 33);
+  t.same([11, 22, 33, 44, 55, 66, 77, 88, 99].ex.at(1000), undefined);
+  t.same([11, 22, 33, 44, 55, 66, 77, 88, 99].ex.at(-1000), undefined);
+  t.same([11, 22, 33, 44, 55, 66, 77, 88, 99].ex.at(-3), 77);
+  t.same([11, 22, 33, 44, 55, 66, 77, 88, 99].ex.at(-1), 99);
+  t.same([].ex.at(0), undefined);
+  t.end();
+});
+
+test('$clear', (t) => {
+  t.same([11, 22, 33, 44, 55, 66, 77, 88, 99].ex.$clear(), []);
+  const a = [11, 22, 33, 44, 55, 66, 77, 88, 99];
+  t.equal(a.ex.$clear(), a);
+  t.end();
+});
+
+test('count', (t) => {
+  t.same([11, 11, 22, 11, 33, 22, 44, 22, 44, 55].ex.count(), 10);
+  t.same([11, 11, 22, 11, 33, 22, 44, 22, 44, 55].ex.count(11), 3);
+  t.same([11, 11, 22, 11, 33, 22, 44, 22, 44, 55].ex.count(44), 2);
+  t.same([11, 11, 22, 11, 33, 22, 44, 22, 44, 55].ex.count(123), 0);
+  const a = {};
+  t.same([11, a, 11, 22, 11, 33, a, 22, {}, 44, 22, 44, 55].ex.count(a), 2);
+  t.same([].ex.count(), 0);
+  t.same([].ex.count(33), 0);
+  t.end();
+});
+
+test('cycle', (t) => {
+  const a = [];
+  [11, 22, 33].ex.cycle(1, item => a.push(item));
+  t.same(a, [11, 22, 33]);
+
+  const b = [];
+  [11, 22, 33].ex.cycle(3, item => b.push(item));
+  t.same(b, [11, 22, 33, 11, 22, 33, 11, 22, 33]);
+
+  const c = [];
+  [11, 22, 33].ex.cycle(0, item => a.push(item));
+  t.same(c, []);
   t.end();
 });
