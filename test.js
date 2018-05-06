@@ -228,10 +228,25 @@ test('assoc', (t) => {
   const a = {};
   const b = [77, 88, 99];
   t.equal([[11, 22, 33], [44, 55, 66], b].ex.assoc(77), b);
+  t.equal([[11, 22, 33], [44, 55, 66], 123].ex.assoc(123), undefined);
+  t.equal([[11, 22, 33], [44, 55, 66], 'aaa'].ex.assoc('aaa'), undefined);
   t.same([[11, 22, 33], [a, 55, 66], [77, 88, 99]].ex.assoc(a), [a, 55, 66]);
   t.same([[11, 22, 33], [44, 55, 66], [77, 88, 99]].ex.assoc(44), [44, 55, 66]);
   t.same([[11, 22, 33], [44, 55, 66], [77, 88, 99]].ex.assoc(445), undefined);
   t.same([].ex.assoc(44), undefined);
+  t.end();
+});
+
+test('rassoc', (t) => {
+  const a = {};
+  const b = [77, 88, 99];
+  t.equal([[11, 22, 33], [44, 55, 66], b].ex.rassoc(99), b);
+  t.equal([[11, 22, 33], [44, 55, 66], 123].ex.rassoc(123), undefined);
+  t.equal([[11, 22, 33], [44, 55, 66], 'aaa'].ex.rassoc('aaa'), undefined);
+  t.same([[11, 22, 33], [44, 55, a], [77, 88, 99]].ex.rassoc(a), [44, 55, a]);
+  t.same([[11, 22, 33], [44, 55, 66], [77, 88, 99]].ex.rassoc(66), [44, 55, 66]);
+  t.same([[11, 22, 33], [44, 55, 66], [77, 88, 99]].ex.rassoc(445), undefined);
+  t.same([].ex.rassoc(44), undefined);
   t.end();
 });
 
@@ -277,5 +292,44 @@ test('cycle', (t) => {
   const c = [];
   [11, 22, 33].ex.cycle(0, item => a.push(item));
   t.same(c, []);
+  t.end();
+});
+
+test('flatten', (t) => {
+  const a = [11, 22, 33, 44, 55, 66];
+  t.notEqual(a.ex.flatten(), a);
+
+  const b = {};
+  t.same([[11, 22, 33], [44, [55, 66]], [[[77], 88], 99], [[[[100, b]]]]].ex.flatten(), [11, 22, 33, 44, 55, 66, 77,  88, 99, 100, b]);
+  t.same([11].ex.flatten(), [11]);
+  t.same([].ex.flatten(), []);
+  t.end();
+});
+
+test('$flatten', (t) => {
+  const a = [11, 22, 33, 44, 55, 66];
+  t.equal(a.ex.$flatten(), a);
+
+  const b = {};
+  t.same([[11, 22, 33], [44, [55, 66]], [[[77], 88], 99], [[[[100, b]]]]].ex.$flatten(), [11, 22, 33, 44, 55, 66, 77,  88, 99, 100, b]);
+  t.same([11].ex.$flatten(), [11]);
+  t.same([].ex.$flatten(), []);
+  t.end();
+});
+
+test('take', (t) => {
+  t.same([11, 22, 33, 44, 55, 66].ex.take(2), [11, 22]);
+  t.same([11, 22, 33, 44, 55, 66].ex.take(6), [11, 22, 33, 44, 55, 66]);
+  t.same([11, 22, 33, 44, 55, 66].ex.take(0), []);
+  t.same([11, 22, 33, 44, 55, 66].ex.take(10), [11, 22, 33, 44, 55, 66]);
+  t.same([].ex.take(2), []);
+  t.end();
+});
+
+test('takeWhile', (t) => {
+  t.same([11, 12, 13, 22, 14, 15, 16].ex.takeWhile(i => i < 20), [11, 12, 13]);
+  t.same([11, 12, 13, 22, 14, 15, 16].ex.takeWhile(i => i < 10), []);
+  t.same([11, 12, 13, 22, 14, 15, 16].ex.takeWhile(i => i < 30), [11, 12, 13, 22, 14, 15, 16]);
+  t.same([].ex.takeWhile(i => i < 20), []);
   t.end();
 });

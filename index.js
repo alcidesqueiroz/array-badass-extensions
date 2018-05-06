@@ -116,6 +116,8 @@ ex.$minus = (arr, arr2) => {
 
 ex.assoc = (arr, val) => arr.filter(item => item && item[0] === val)[0];
 
+ex.rassoc = (arr, val) => arr.filter(item => item && item[item.length - 1] === val)[0];
+
 ex.at = (arr, pos) => arr.slice(pos, pos !== -1 ? (pos + 1) : undefined)[0];
 
 ex.$clear = (arr) => {
@@ -133,8 +135,29 @@ ex.cycle = (arr, n = 1, fn) => {
   }
 };
 
+ex.flatten = function flatten(arr) {
+  const flattened = [].concat(...arr);
+  return flattened.some(item => Array.isArray(item)) ? flatten(flattened) : flattened;
+};
 
+ex.$flatten = function $flatten(arr) {
+  const flattened = arr.ex.flatten();
+  arr.length = 0;
+  arr.push(...flattened);
+  return arr;
+};
 
+ex.take = (arr, qt) => arr.slice(0, qt);
+
+ex.takeWhile = (arr, fn) => {
+  let finished = false;
+
+  return arr.filter((item) => {
+    if (finished) return false;
+    if (!fn(item)) finished = true;
+    return !finished;
+  });
+};
 
 
 const exSymbol = Symbol('ex');
