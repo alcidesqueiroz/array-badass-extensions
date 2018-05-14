@@ -53,7 +53,7 @@ test('includeSome', (t) => {
   t.end();
 });
 
-test('includeSome', (t) => {
+test('includeAll', (t) => {
   t.equal([11, 22, 33, 44, 55, 66].ex.includeAll(11, 44, 55), true);
   t.equal([11, 22, 33, 44, 55, 66].ex.includeAll(11), true);
   t.equal([11, 22, 33, 44, 55, 66].ex.includeAll(11, 22, 3333), false);
