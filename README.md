@@ -217,6 +217,23 @@ const b = {}, c = [];
 [[11, 22, 33], [44, 55, 66], [77, 88, 99]].ex.rassoc(66); //=> [44, 55, 66]
 [[11, 22, 33], [44, 55, 66], 123].ex.rassoc(123); //=> undefined
 
+// $clear()
+// Clears the original array
+[11, 22, 33, 44, 55, 66, 77, 88, 99].ex.$clear(); //=> []
+
+// cycle(count, callback)
+// Calls the given callback for each element n times.
+const b = [];
+[11, 22, 33].ex.cycle(3, item => b.push(item));
+b, [11, 22, 33, 11, 22, 33, 11, 22, 33]);
+
+// flatten()
+// Returns a new array that is a one-dimensional flattening of the original array (recursively).
+[[11, 22, 33], [44, [55, 66]], [[[77], 88], 99], [[[[100]]]]].ex.flatten(); //=> [11, 22, 33, 44, 55, 66, 77,  88, 99, 100]
+
+// $flatten()
+// Mutable version of $flatten()
+[[11, 22, 33], [44, [55, 66]], [[[77], 88], 99], [[[[100]]]]].ex.$flatten(); //=> [11, 22, 33, 44, 55, 66, 77,  88, 99, 100]
 
 ```
 
