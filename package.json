@@ -10,7 +10,7 @@
     "url": "medium.com/@alcidesqueiroz"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8"
   },
   "scripts": {
     "test": "eslint index.js && tap test.js"
