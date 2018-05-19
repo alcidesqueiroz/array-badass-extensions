@@ -24,7 +24,7 @@ You can use array-badass-extensions in two different ways:
 
 ### Extending the array prototype
 The standard way of using ABEX is by extending the Array prototype. Normally, extending native object prototypes is not safe and advisable. The main reason is because it's not possible to predict whether your extension methods will collide with namesake implementations in the future. ABEX solves this problem by grouping all extension methods under a `.ex` property.
-```
+```javascript
 import { extendArray } from 'array-badass-extensions';
 
 extendArray(); // extendArray must be called ASAP if you want to extend Array prototype
@@ -40,7 +40,7 @@ numbers.ex.uniq();
 ### Using the ABEX object
 If you're really not willing to extend Array prototype, you can use the module exported object directly:
 
-```
+```javascript
 import abex from 'array-badass-extensions';
 
 abex.last(['The', 'Green', 'Bay', 'Packers'], 3);
