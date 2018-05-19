@@ -2,7 +2,7 @@
 
 > 🥊  Badass extension methods for JavaScript arrays.
 
-<img src="https://gist.githubusercontent.com/alcidesqueiroz/c3d6c6edc559194bc37a2c464a21768d/raw/9a4bddc93fbd0bdaa9db856374db8050a0a4558c/array-badass-extensions.png" width="300" />
+<img src="https://gist.githubusercontent.com/alcidesqueiroz/c3d6c6edc559194bc37a2c464a21768d/raw/9a4bddc93fbd0bdaa9db856374db8050a0a4558c/array-badass-extensions.png" width="500" />
 
 A set of array extension methods shamelessly inspired by arrays in Ruby and other languages.
 
