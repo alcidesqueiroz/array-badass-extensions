@@ -2,6 +2,45 @@ const test = require('tap').test;
 const abex = require('.');
 abex.extendArray();
 
+test('breakableForEach', (t) => {
+  let items = [];
+  [11, 22, 33, 44, 55].ex.breakableForEach((item) => {
+    if (item === 44) return false;
+    items.push(item);
+  });
+  t.same(items, [11, 22, 33]);
+
+  items = [];
+  [11, 22, 33, 44, 55].ex.breakableForEach((item) => {
+    if (item === 44) return true;
+    items.push(item);
+  });
+  t.same(items, [11, 22, 33, 55]);
+
+  items = [];
+  [11, 22, 33, 44, 55].ex.breakableForEach((item) => {
+    if (item === 44) return null;
+    items.push(item);
+  });
+  t.same(items, [11, 22, 33, 55]);
+
+  items = [];
+  const indexes = [];
+  const arrayRefs = [];
+
+  const arr = [11, 22, 33, 44, 55];
+
+  arr.ex.breakableForEach((item, i, a) => {
+    items.push(item);
+    indexes.push(i);
+    arrayRefs.push(a);
+  });
+  t.same(items, [11, 22, 33, 44, 55]);
+  t.same(indexes, [0, 1, 2, 3, 4]);
+  t.same(arrayRefs, [arr, arr, arr, arr, arr]);
+  t.end();
+});
+
 test('first', (t) => {
   t.same([11, 22, 33, 44].ex.first(), 11);
   t.same([11, 22, 33, 44].ex.first(2), [11, 22]);

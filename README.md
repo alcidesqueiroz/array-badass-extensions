@@ -54,6 +54,18 @@ abex.uniq(numbers);
 
 **Note:** All methods whose name starts with `$` mutate the original array instance.
 ```javascript
+// breakableForEach(callback[, thisArg])
+// An improved version of the forEach method, allowing the loop to be exited
+// by returning false in the passed callback
+[11, 22, 33, 44, 55].ex.breakableForEach((item) => {
+  if (item === 44) return false;
+  console.log(item);
+});
+//=> Prints:
+// 11
+// 22
+// 33
+
 // first([quantity])
 // Returns the first N items of the array
 [11, 22, 33, 44].ex.first(); //=> 11

@@ -2,6 +2,12 @@
 
 const ex = {};
 
+ex.breakableForEach = (arr, fn, self = undefined) => {
+  for (let i = 0; i < arr.length; i++) {
+    if (fn.call(self, arr[i], i, arr) === false) break;
+  }
+};
+
 ex.first = (arr, qt = 1) => {
   const a = arr.slice(0, qt);
   return qt === 1 ? a[0] : a;
@@ -158,7 +164,6 @@ ex.takeWhile = (arr, fn) => {
     return !finished;
   });
 };
-
 
 const exSymbol = Symbol('ex');
 
