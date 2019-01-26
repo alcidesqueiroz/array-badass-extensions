@@ -8,6 +8,27 @@ ex.breakableForEach = (arr, fn, self = undefined) => {
   }
 };
 
+const operations = {
+  skip: () => ({ __operation: 'SKIP' }),
+  many: payload => ({ __operation: 'MANY', payload })
+};
+
+ex.flexMap = (arr, fn, self = undefined) => {
+  let result = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    const ret = fn.call(self, arr[i], i, arr, operations);
+    if (ret && ret.__operation === 'SKIP') continue;
+    if (ret && ret.__operation === 'MANY' && ret.payload) {
+      result = result.concat(ret.payload);
+    } else {
+      result.push(ret);
+    }
+  }
+
+  return result;
+};
+
 ex.first = (arr, qt = 1) => {
   const a = arr.slice(0, qt);
   return qt === 1 ? a[0] : a;

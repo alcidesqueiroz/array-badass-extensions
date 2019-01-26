@@ -41,6 +41,19 @@ test('breakableForEach', (t) => {
   t.end();
 });
 
+test('flexMap', (t) => {
+  t.same([11, 22, 33, 44].ex.flexMap((item, i, arr, ops) => {
+    return item !== 33 ? item : ops.skip();
+  }), [11, 22, 44]);
+  t.same([11, 22, 33, 44].ex.flexMap((item) => item), [11, 22, 33, 44]);
+  t.same([11, 22, 33, 44].ex.flexMap(() => null), [null, null, null, null]);
+  t.same([11, 22, 33, 44].ex.flexMap(() => false), [false, false, false, false]);
+  t.same([11, 22, 33, 44].ex.flexMap((item, i, arr, ops) => {
+    return item % 2 === 0 ? item : ops.many([item, item * 2, item * 3]);
+  }), [11, 22, 33, 22, 33, 66, 99, 44]);
+  t.end();
+});
+
 test('first', (t) => {
   t.same([11, 22, 33, 44].ex.first(), 11);
   t.same([11, 22, 33, 44].ex.first(2), [11, 22]);
