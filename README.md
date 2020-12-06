@@ -1,4 +1,4 @@
-# array-badass-extensions [![Build status](https://travis-ci.org/alcidesqueiroz/array-badass-extensions.svg?branch=master)](https://travis-ci.org/alcidesqueiroz/array-badass-extensions)
+# array-badass-extensions [![Build status](https://travis-ci.com/alcidesqueiroz/array-badass-extensions.svg?branch=master)](https://travis-ci.com/alcidesqueiroz/array-badass-extensions)
 
 > 🥊  Badass extension methods for JavaScript arrays.
 
@@ -10,7 +10,7 @@ A set of array extension methods shamelessly inspired by arrays in Ruby and othe
 
 With npm:
 ```
-$ npm install --save array-badass-extensions
+$ npm install array-badass-extensions
 ```
 
 With Yarn:

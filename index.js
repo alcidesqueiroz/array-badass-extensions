@@ -10,7 +10,7 @@ ex.breakableForEach = (arr, fn, self = undefined) => {
 
 const operations = {
   skip: () => ({ __operation: 'SKIP' }),
-  many: payload => ({ __operation: 'MANY', payload })
+  many: (payload) => ({ __operation: 'MANY', payload })
 };
 
 ex.flexMap = (arr, fn, self = undefined) => {
@@ -39,13 +39,13 @@ ex.last = (arr, qt = 1) => {
   return qt === 1 ? a[0] : a;
 };
 
-ex.isEmpty = arr => arr.length === 0;
+ex.isEmpty = (arr) => arr.length === 0;
 
 ex.include = (arr, value) => arr.indexOf(value) > -1;
 
-ex.includeSome = (arr, ...values) => values.some(value => arr.indexOf(value) > -1);
+ex.includeSome = (arr, ...values) => values.some((value) => arr.indexOf(value) > -1);
 
-ex.includeAll = (arr, ...values) => values.every(value => arr.indexOf(value) > -1);
+ex.includeAll = (arr, ...values) => values.every((value) => arr.indexOf(value) > -1);
 
 ex.drop = (arr, qt) => (qt >= arr.length ? [] : arr.slice(-(arr.length - qt)));
 
@@ -70,7 +70,7 @@ ex.$insert = (arr, index, ...values) => {
   return arr;
 };
 
-ex.delete = (arr, value) => arr.filter(item => item !== value);
+ex.delete = (arr, value) => arr.filter((item) => item !== value);
 
 ex.$delete = (arr, value) => {
   for (;;) {
@@ -102,7 +102,7 @@ ex.$deleteIf = (arr, fn) => {
   return arr;
 };
 
-ex.compact = arr => arr.filter(item => [null, undefined].indexOf(item) === -1);
+ex.compact = (arr) => arr.filter((item) => [null, undefined].indexOf(item) === -1);
 
 ex.$compact = (arr) => {
   for (let i = 0; i < arr.length; i++) {
@@ -115,7 +115,7 @@ ex.$compact = (arr) => {
   return arr;
 };
 
-ex.uniq = arr => [...new Set(arr)];
+ex.uniq = (arr) => [...new Set(arr)];
 
 ex.$uniq = (arr) => {
   for (let i = 0; i < arr.length; i++) {
@@ -128,7 +128,7 @@ ex.$uniq = (arr) => {
   return arr;
 };
 
-ex.minus = (arr, arr2) => arr.filter(item => arr2.indexOf(item) === -1);
+ex.minus = (arr, arr2) => arr.filter((item) => arr2.indexOf(item) === -1);
 
 ex.$minus = (arr, arr2) => {
   for (let i = 0; i < arr.length; i++) {
@@ -141,9 +141,9 @@ ex.$minus = (arr, arr2) => {
   return arr;
 };
 
-ex.assoc = (arr, val) => arr.filter(item => item && item[0] === val)[0];
+ex.assoc = (arr, val) => arr.filter((item) => item && item[0] === val)[0];
 
-ex.rassoc = (arr, val) => arr.filter(item => item && item[item.length - 1] === val)[0];
+ex.rassoc = (arr, val) => arr.filter((item) => item && item[item.length - 1] === val)[0];
 
 ex.at = (arr, pos) => arr.slice(pos, pos !== -1 ? (pos + 1) : undefined)[0];
 
@@ -152,19 +152,19 @@ ex.$clear = (arr) => {
   return arr;
 };
 
-ex.count = (arr, ...args) => arr.filter(item => args.length === 0 || item === args[0]).length;
+ex.count = (arr, ...args) => arr.filter((item) => args.length === 0 || item === args[0]).length;
 
-ex.countIf = (arr, fn) => arr.filter(item => fn(item)).length;
+ex.countIf = (arr, fn) => arr.filter((item) => fn(item)).length;
 
 ex.cycle = (arr, n = 1, fn) => {
   for (let i = 0; i < n; i++) {
-    arr.forEach(item => fn(item));
+    arr.forEach((item) => fn(item));
   }
 };
 
 ex.flatten = function flatten(arr) {
   const flattened = [].concat(...arr);
-  return flattened.some(item => Array.isArray(item)) ? flatten(flattened) : flattened;
+  return flattened.some((item) => Array.isArray(item)) ? flatten(flattened) : flattened;
 };
 
 ex.$flatten = function $flatten(arr) {
